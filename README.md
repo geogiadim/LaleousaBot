@@ -1,6 +1,6 @@
 # LaleousaBot
 
-## Bot Commands
+### Bot Commands
 
 Join in voice channel <br>
 ```?join``` 
