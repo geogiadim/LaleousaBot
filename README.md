@@ -3,16 +3,26 @@
 ### Bot Commands
 
 Join in voice channel <br>
-```?join``` 
+```
+?join
+``` 
 
 Play a youtube url <br>
-```?play yuoutbe_url``` 
+```
+?play yuoutbe_url
+``` 
 
 Resume playing music <br>
-```?resume``` 
+```
+?resume
+``` 
 
 Pause playing music <br>
-```?pause```
+```
+?pause
+```
 
 Disconnect from the voice channel <br>
-```?disconnect```
+```
+?disconnect
+```
