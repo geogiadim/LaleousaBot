@@ -1,28 +1,66 @@
 # LaleousaBot
 
+### About 
+This is a discord music bot that plays music from YouTube in discord voice channels.
+
+### Installation Guide 
+
+- Clone this repository into a directory.
+- Open your terminal (for linux) or cmd (for windows) inside the new directory.
+- Install a python virtual environment inside your new directory:
+  ```
+  $ pip install virtualenv
+  $ virtualenv -p python3 venv
+  ```
+  For linux:
+  ```  
+  $ virtualenv venv 
+  ```
+  For windows:
+  ```
+  $ virtualenv -p python3 venv
+  ```
+- Activate the installed venv:
+  <br><br>For Windows:
+  ```
+  $ venv\Scripts\activate
+  ```
+  For Linux:
+  ```
+  $ . venv/bin/activate
+  ```
+  
+### Requirements
+Run below three commands inside your activated venv:
+```
+$ pip install discord.py
+$ pip install youtube_dl
+$ pip install pynacl
+```
+### Run
+In order to run this Bot run below command inside your activated venv:
+```
+$ python main.py
+```
+
 ### Bot Commands
 
-Join in voice channel <br>
+Join in a voice channel and play given YouTube url:
 ```
-?join
+?play "youtube_url"
 ``` 
 
-Play a youtube url <br>
-```
-?play youtube_url
-``` 
-
-Resume playing music <br>
+Resume playing music:
 ```
 ?resume
 ``` 
 
-Pause playing music <br>
+Pause playing music:
 ```
 ?pause
 ```
 
-Disconnect from the voice channel <br>
+Disconnect from the voice channel: 
 ```
 ?disconnect
 ```

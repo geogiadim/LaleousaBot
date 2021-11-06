@@ -8,4 +8,4 @@ cogs = [music]
 for i in range(len(cogs)):
     cogs[i].setup(client)
 
-client.run('__ YOUR TOKEN HERE __')
+client.run('__YOUR TOKEN HERE__')
