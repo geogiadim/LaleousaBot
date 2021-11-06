@@ -9,7 +9,7 @@ Join in voice channel <br>
 
 Play a youtube url <br>
 ```
-?play yuoutbe_url
+?play youtube_url
 ``` 
 
 Resume playing music <br>
