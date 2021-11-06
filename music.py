@@ -11,11 +11,12 @@ class Music(commands.Cog):
     async def join(self, ctx):
         if ctx.author.voice is None:
             await ctx.send("You are not in a voice channel!")
-        voice_channel = ctx.author.voice.channel
-        if ctx.voice_client is None:
-            await voice_channel.connect()
         else:
-            await ctx.voice_client.move_to(voice_channel)
+            voice_channel = ctx.author.voice.channel
+            if ctx.voice_client is None:
+                await voice_channel.connect()
+            else:
+                await ctx.voice_client.move_to(voice_channel)
 
     @commands.command()
     async def disconnect(self, ctx):
@@ -24,12 +25,10 @@ class Music(commands.Cog):
     @commands.command()
     async def play(self, ctx, url):
         ctx.voice_client.stop()
-
         FFMPEG_OPTIONS = {
             'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5',
             'options': '-vn'
         }
-
         YDL_OPTIONS = {'format': "bestaudio"}
         vc = ctx.voice_client
 
@@ -41,12 +40,12 @@ class Music(commands.Cog):
 
     @commands.command()
     async def pause(self, ctx):
-        await ctx.voice_client.pause()
+        ctx.voice_client.pause()
         await ctx.send("Paused")
 
     @commands.command()
     async def resume(self, ctx):
-        await ctx.voice_client.resume()
+        ctx.voice_client.resume()
         await ctx.send("Resumed")
 
 
