@@ -2,7 +2,12 @@ import discord
 from discord.ext import commands
 import music
 
-client = commands.Bot(command_prefix='?', intents=discord.Intents.all())
+intents = discord.Intents.default()
+intents.members = True
+
+DESCRIPTION = "A music discord bot"
+
+client = commands.Bot(command_prefix='?', description=DESCRIPTION, intents=intents)
 
 cogs = [music]
 for i in range(len(cogs)):

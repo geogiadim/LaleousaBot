@@ -34,11 +34,9 @@ ___
   
 ### Requirements 
 ___
-Run below three commands inside your activated venv:
+In the project directory, install the packages using:
 ```
-$ pip install discord.py
-$ pip install youtube_dl
-$ pip install pynacl
+pip install -r requirements.txt
 ```
 ### Run
 ___
@@ -67,5 +65,5 @@ Pause playing music:
 
 Disconnect from the voice channel: 
 ```
-?disconnect
+?leave
 ```

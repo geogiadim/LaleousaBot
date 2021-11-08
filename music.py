@@ -13,13 +13,14 @@ class Music(commands.Cog):
     def __init__(self, client):
         self.client = client
 
-    @commands.command()
+    @commands.command(name='leave')
     async def disconnect(self, ctx):
         await ctx.voice_client.disconnect()
 
-    @commands.command()
-    async def play(self, ctx, url):
+    @commands.command(name='join')
+    async def join(self, ctx):
         if ctx.author.voice is None:
+            print('asdsada')
             await ctx.send("You are not in a voice channel!")
         else:
             voice_channel = ctx.author.voice.channel
@@ -28,6 +29,8 @@ class Music(commands.Cog):
             else:
                 await ctx.voice_client.move_to(voice_channel)
 
+    @commands.command(name='play')
+    async def play(self, ctx, url):
         ctx.voice_client.stop()
         vc = ctx.voice_client
 
@@ -37,12 +40,12 @@ class Music(commands.Cog):
             source = await discord.FFmpegOpusAudio.from_probe(url2, **FFMPEG_OPTIONS)
             vc.play(source)
 
-    @commands.command()
+    @commands.command(play='pause')
     async def pause(self, ctx):
         ctx.voice_client.pause()
         await ctx.send("Paused")
 
-    @commands.command()
+    @commands.command(play='resume')
     async def resume(self, ctx):
         ctx.voice_client.resume()
         await ctx.send("Resumed")
