@@ -49,7 +49,7 @@ ___
 Create a Bot from the [Discord Developer Portal](https://discord.com/developers/docs/intro), generate a Bot Token and copy to your clipboard the Bot token.  
 Then create a ```.env``` file and paste the Token.
 ```
-TOKEN = "Your token here" 
+TOKEN = "Bot token here" 
 ```
 ### Run
 ___
