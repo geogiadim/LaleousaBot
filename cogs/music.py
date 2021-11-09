@@ -10,8 +10,12 @@ YDL_OPTIONS = {'format': "bestaudio"}
 
 
 class Music(commands.Cog):
-    def __init__(self, client):
-        self.client = client
+    def __init__(self, bot):
+        self.bot = bot
+
+    @commands.Cog.listener()
+    async def on_ready(self):
+        print("Music Bot is online")
 
     @commands.command(name='leave')
     async def disconnect(self, ctx):
@@ -51,5 +55,5 @@ class Music(commands.Cog):
         await ctx.send("Resumed")
 
 
-def setup(client):
-    client.add_cog(Music(client))
+def setup(bot):
+    bot.add_cog(Music(bot))
