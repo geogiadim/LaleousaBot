@@ -178,6 +178,7 @@ class Music(commands.Cog):
                 ctx.voice_client.resume()
                 await ctx.send(f""":arrow_forward: **Resumed** -- {self.current_song[0]['title']}""")
 
+    '''Volgograd Commands'''
     @commands.command(name='mitsotakigamiesai', help="KATEVASE TO SE PARAKALW")
     async def mg(self, ctx):
         await self.play(ctx, "https://www.youtube.com/watch?v=k99YAA6cn2Q&ab_channel=FilmAckrakin")
