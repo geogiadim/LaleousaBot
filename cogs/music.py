@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 import youtube_dl
 from requests import get
+from cogs.utils.roles import voice_channel_moderator_roles
 
 FFMPEG_OPTIONS = {
     'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5',
@@ -83,6 +84,7 @@ class Music(commands.Cog):
                 )
 
     @commands.command(name='q', help="Prints music queue")
+    @commands.has_any_role(*voice_channel_moderator_roles)
     async def print_queue(self, ctx):
         print(self.songs_queue)
         result = ""
@@ -95,16 +97,19 @@ class Music(commands.Cog):
             await ctx.send("Empty queue")
 
     @commands.command(name="cq", help="Clears music queue")
+    @commands.has_any_role(*voice_channel_moderator_roles)
     async def clear_queue(self, ctx):
         self.songs_queue = []
         await ctx.send("""***Queue cleared!!!***""")
 
     @commands.command(name="skip", help="Skips the current music track")
+    @commands.has_any_role(*voice_channel_moderator_roles)
     async def skip(self, ctx):
         if ctx.voice_client is not None:
-            ctx.voice_client.stop()
-            self.is_playing = False
-            await ctx.send(f"""**Skipped**-- {self.current_song[0]['title']}""")
+            if self.is_playing:
+                ctx.voice_client.stop()
+                self.is_playing = False
+                await ctx.send(f"""**Skipped**-- {self.current_song[0]['title']}""")
 
             if not self.is_playing:
                 if len(self.songs_queue) > 0:
@@ -128,6 +133,7 @@ class Music(commands.Cog):
     #             await ctx.send(f""":x: {self.songs_queue[index-1][0]['title']} -- removed by {ctx.author.mention}""")
 
     @commands.command(name='leave', help="Disconnects from the voice channel")
+    @commands.has_any_role(*voice_channel_moderator_roles)
     async def leave(self, ctx):
         if ctx.voice_client is not None:
             self.is_playing = False
