@@ -27,6 +27,21 @@ def ytb_search(arg):
     }
 
 
+# @commands.command(name='join', help="Connects to a voice channel")
+async def join(ctx):
+    if ctx.author.voice is None:
+        await ctx.send("Please connect to a voice channel!")
+    else:
+        voice_channel = ctx.author.voice.channel
+        if ctx.voice_client is None:
+            await voice_channel.connect()
+            print("Joined: ", voice_channel)
+        else:
+            if voice_channel != ctx.voice_client.channel:
+                await ctx.voice_client.move_to(voice_channel)
+                print("Joined: ", voice_channel)
+
+
 class Music(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -37,19 +52,6 @@ class Music(commands.Cog):
     @commands.Cog.listener()
     async def on_ready(self):
         print("Music Bot is online")
-
-    @commands.command(name='join', help="Connects to a voice channel")
-    async def join(self, ctx):
-        if ctx.author.voice is None:
-            await ctx.send("Please connect to a voice channel!")
-        else:
-            voice_channel = ctx.author.voice.channel
-            if ctx.voice_client is None:
-                await voice_channel.connect()
-                print("Joined: ", voice_channel)
-            else:
-                await ctx.voice_client.move_to(voice_channel)
-                print("Joined: ", voice_channel)
 
     def play_next(self, vc):
         if len(self.songs_queue) > 0:
@@ -66,6 +68,7 @@ class Music(commands.Cog):
 
     @commands.command(name='play', help="Adds in queue or plays the song given by YouTube url or query")
     async def play(self, ctx, *args):
+        await join(ctx)
         if ctx.voice_client is not None:
             vc = ctx.voice_client
 
@@ -109,7 +112,7 @@ class Music(commands.Cog):
             if self.is_playing:
                 ctx.voice_client.stop()
                 self.is_playing = False
-                await ctx.send(f"""**Skipped**-- {self.current_song[0]['title']}""")
+                await ctx.send(f"""**Skipped** -- {self.current_song[0]['title']}""")
 
             if not self.is_playing:
                 if len(self.songs_queue) > 0:
@@ -142,19 +145,51 @@ class Music(commands.Cog):
             await ctx.voice_client.disconnect()
             print("Disconnected")
 
-    @commands.command(play='pause', help="Pause playing music")
+    @commands.command(name='pause', help="Pause playing music")
     async def pause(self, ctx):
         if ctx.voice_client is not None:
             if self.is_playing:
                 ctx.voice_client.pause()
                 await ctx.send(f""":pause_button: **Paused** -- {self.current_song[0]['title']}""")
 
-    @commands.command(play='resume', help="Resume playing music")
+    @commands.command(name='resume', help="Resume playing music")
     async def resume(self, ctx):
         if ctx.voice_client is not None:
             if self.is_playing:
                 ctx.voice_client.resume()
                 await ctx.send(f""":arrow_forward: **Resumed** -- {self.current_song[0]['title']}""")
+
+    @commands.command(name='mitsotakigamiesai', help="KATEVASE TO SE PARAKALW")
+    async def mg(self, ctx):
+        await self.play(ctx, "https://www.youtube.com/watch?v=k99YAA6cn2Q&ab_channel=FilmAckrakin")
+
+    @commands.command(name='madclip', help="Money And Drugs Can't Live In Poverty")
+    async def mad_clip(self, ctx):
+        await self.play(ctx, "https://www.youtube.com/watch?v=8rKWHn2cPnc")
+
+    @commands.command(name='compactitaly', help="Oi megalyteres italikes epitixies olwn twn epoxwn")
+    async def compact_italy(self, ctx):
+        await self.play(ctx, "https://www.youtube.com/watch?v=PzhVvG-1tpE&ab_channel=NatashaI")
+
+    @commands.command(name='compactillusions', help="Eikones plasmenes apo oneira")
+    async def compact_illusions(self, ctx):
+        await self.play(ctx, "https://www.youtube.com/watch?v=yQwMV5aJWRQ")
+
+    @commands.command(name='compactfairytales', help="H mousiki moiazei me paramithi")
+    async def compact_fairytales(self, ctx):
+        await self.play(ctx, "https://www.youtube.com/watch?v=EqujUeTGckY")
+
+    @commands.command(name='compactstratos', help="Xoros ellinikos, antrikos, varus!!")
+    async def compact_zeimpekika(self, ctx):
+        await self.play(ctx, "https://www.youtube.com/watch?v=Ese1ahsa0OU")
+
+    @commands.command(name='mitsotaki', help="KATEVASE TO DEN THA TO XANAPW")
+    async def mitsotaki(self, ctx):
+        await ctx.send(f"""**GAMIESAI RE MALAKA**""")
+
+    @commands.command(name="vanskip", help="Skips the current music track")
+    async def van_skip(self, ctx):
+        await self.skip(ctx)
 
 
 def setup(bot):
