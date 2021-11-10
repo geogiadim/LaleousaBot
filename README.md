@@ -61,7 +61,7 @@ $ python app.py
 ### Bot Commands
 ___
 
-Bot prefix is ```?```  
+Bot's prefix is ```?```  
 
 | Command | Description |
 |---------|-------------|
