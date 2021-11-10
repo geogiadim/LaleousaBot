@@ -61,27 +61,15 @@ $ python app.py
 ### Bot Commands
 ___
 
-Join in a voice channel 
-```
-?join
-```
+Bot prefix is ```?```  
 
-Play given YouTube url or query
-```
-?play "youtube_url or query" 
-``` 
-
-Resume playing music
-```
-?resume
-``` 
-
-Pause playing music
-```
-?pause
-```
-
-Disconnect from the voice channel
-```
-?leave
-```
+| Command | Description |
+|---------|-------------|
+|join | Connects to a voice channel |
+|play "youtube_url or query" | Adds in queue or plays the song given by YouTube url or query|
+|skip| Skips the current music track|
+|q| Prints music queue|
+|cq| Clears music queue|
+|pause| Pause playing music|
+|resume| Resume playing music|
+|leave| Disconnects from the voice channel|

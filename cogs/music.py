@@ -63,7 +63,7 @@ class Music(commands.Cog):
             self.is_playing = False
             self.current_song = None
 
-    @commands.command(name='play', help="Plays youtube_url or youtube query")
+    @commands.command(name='play', help="Adds in queue or plays the song given by YouTube url or query")
     async def play(self, ctx, *args):
         if ctx.voice_client is not None:
             vc = ctx.voice_client
@@ -82,7 +82,7 @@ class Music(commands.Cog):
                     after=lambda e: self.play_next(vc),
                 )
 
-    @commands.command(name='q', help="Prints song playlist in queue")
+    @commands.command(name='q', help="Prints music queue")
     async def print_queue(self, ctx):
         print(self.songs_queue)
         result = ""
@@ -94,12 +94,12 @@ class Music(commands.Cog):
         else:
             await ctx.send("Empty queue")
 
-    @commands.command(name="cq", help="Clears songs queue")
+    @commands.command(name="cq", help="Clears music queue")
     async def clear_queue(self, ctx):
         self.songs_queue = []
         await ctx.send("""***Queue cleared!!!***""")
 
-    @commands.command(name="skip", help="Skips the current song being played",)
+    @commands.command(name="skip", help="Skips the current music track")
     async def skip(self, ctx):
         if ctx.voice_client is not None:
             ctx.voice_client.stop()
@@ -136,14 +136,14 @@ class Music(commands.Cog):
             await ctx.voice_client.disconnect()
             print("Disconnected")
 
-    @commands.command(play='pause', help="Pause playing song")
+    @commands.command(play='pause', help="Pause playing music")
     async def pause(self, ctx):
         if ctx.voice_client is not None:
             if self.is_playing:
                 ctx.voice_client.pause()
                 await ctx.send(f""":pause_button: **Paused** -- {self.current_song[0]['title']}""")
 
-    @commands.command(play='resume', help="Resume playing song")
+    @commands.command(play='resume', help="Resume playing music")
     async def resume(self, ctx):
         if ctx.voice_client is not None:
             if self.is_playing:
