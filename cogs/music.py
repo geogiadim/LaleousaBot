@@ -79,8 +79,6 @@ class Music(commands.Cog):
         # else:
         #     message = "Oh no! Something went wrong while running the command!"
 
-
-
     def play_next(self, vc):
         if len(self.songs_queue) > 0:
             self.is_playing = True
