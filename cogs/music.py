@@ -58,19 +58,28 @@ class Music(commands.Cog):
         """A global error handler cog."""
         if isinstance(error, commands.CommandNotFound):
             message = "Invalid Command"
+            await ctx.send(message, delete_after=5)
+            await ctx.message.delete(delay=5)
         elif isinstance(error, commands.CommandOnCooldown):
             message = f"This command is on cooldown. Please try again after {round(error.retry_after, 1)} seconds."
+            await ctx.send(message, delete_after=5)
+            await ctx.message.delete(delay=5)
         elif isinstance(error, commands.MissingPermissions):
             message = "You are missing the required permissions to run this command!"
+            await ctx.send(message, delete_after=5)
+            await ctx.message.delete(delay=5)
         elif isinstance(error, commands.MissingAnyRole):
             message = "You are missing the required roles to run this command!"
+            await ctx.send(message, delete_after=5)
+            await ctx.message.delete(delay=5)
         elif isinstance(error, commands.UserInputError):
             message = "Something about your input was wrong, please check your input and try again!"
-        else:
-            message = "Oh no! Something went wrong while running the command!"
+            await ctx.send(message, delete_after=5)
+            await ctx.message.delete(delay=5)
+        # else:
+        #     message = "Oh no! Something went wrong while running the command!"
 
-        await ctx.send(message, delete_after=5)
-        await ctx.message.delete(delay=5)
+
 
     def play_next(self, vc):
         if len(self.songs_queue) > 0:
