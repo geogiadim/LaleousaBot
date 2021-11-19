@@ -65,7 +65,6 @@ Bot's prefix is ```?```
 
 | Command | Description |
 |---------|-------------|
-|join | Connects to a voice channel |
 |play "youtube_url or query" | Adds in queue or plays the song given by YouTube url or query|
 |skip| Skips the current music track|
 |q| Prints music queue|
